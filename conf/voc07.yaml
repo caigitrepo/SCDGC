@@ -1,0 +1,10 @@
+defaults:
+  - defaults
+data: 'voc07'
+data_dir: '../../dataset/VOC2007'
+image_size: 576
+word_embedding: True
+num_classes: 20
+ema_decay: 0.99
+ckpt_latest_path: './checkpoints/latest_model_on_voc07.pth'
+ckpt_best_path: './checkpoints/best_model_on_voc07.pth'

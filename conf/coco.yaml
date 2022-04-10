@@ -1,0 +1,10 @@
+defaults:
+  - defaults
+data: 'coco'
+data_dir: '../../dataset/COCO2014'
+image_size: 576
+word_embedding: True
+num_classes: 80
+ema_decay: 0.9997
+ckpt_latest_path: './checkpoints/latest_model_on_coco.pth'
+ckpt_best_path: './checkpoints/best_model_on_coco.pth'
