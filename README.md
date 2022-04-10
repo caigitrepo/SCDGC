@@ -10,7 +10,6 @@ Try the following command for installation.
 ```
 pip install -r requirements.txt
 ```
-
 ## Train
 
 ### Run on VOC07 dataset
