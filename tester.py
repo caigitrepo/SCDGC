@@ -5,7 +5,8 @@ import torch
 from torch import nn
 from torchvision import transforms
 from torch.utils.data import DataLoader
-
+from hydra.utils import get_original_cwd
+from pathlib import Path
 from models import model_factory
 from dataset import dataset_factory
 from utils.util import *
@@ -44,8 +45,7 @@ class Tester(object):
 
 
     def run(self):
-        import ipdb; ipdb.set_trace()
-        model_dict = torch.load(self.args.ckpt_best_path)
+        model_dict = torch.load(Path(get_original_cwd(), self.args.ckpt_best_path))
         self.model.load_state_dict(model_dict)
         print(f'loading best checkpoint success')
         self.model = nn.DataParallel(self.model)
@@ -71,8 +71,6 @@ class Tester(object):
 
 
         ap_dict = {label : ap for label, ap in zip(self.all_labels, ap_list)}
-
-        import ipdb; ipdb.set_trace()
 
         return ap_dict, mAP
     

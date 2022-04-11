@@ -29,7 +29,7 @@ class SCDGC(nn.Module):
         self.relation_net    = Relation(args.num_classes, self.image_feature_dim, self.query_dim, args.correlation_dim)
         self.reason_net      = Reason(self.image_feature_dim, self.time_step)
         self.conv_output     = nn.Conv1d(2 * self.image_feature_dim, self.output_dim, 1)
-        self.extra_cls       = nn.Linear(self.output_dim, 1)
+        #self.extra_cls       = nn.Linear(self.output_dim, 1)
         self.classifiers     = Element_Wise_Layer(args.num_classes, self.output_dim)
 
         self.avgpool2d       = nn.AvgPool2d(2, stride=2)
@@ -64,9 +64,9 @@ class SCDGC(nn.Module):
         feat  = torch.tanh(feat)
         feat  = feat.contiguous().permute(0, 2, 1)
         cls   = self.classifiers(feat).view(batch_size, self.args.num_classes)
-        extra = self.extra_cls(feat).squeeze(-1)
+        # extra = self.extra_cls(feat).squeeze(-1)
 
-        output = cls + extra
+        output = cls #+ extra
         return output, relation_net_output
 
     def _load_backbone_model(self):
